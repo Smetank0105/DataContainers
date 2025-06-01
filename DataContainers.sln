@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContainers", "DataConta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForwardList", "ForwardList\ForwardList.csproj", "{681F6615-4571-4A0C-8B0A-B91770338F92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factorial", "Factorial\Factorial.csproj", "{C42D037E-86B6-473A-9A84-8C9296DF0F1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{681F6615-4571-4A0C-8B0A-B91770338F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{681F6615-4571-4A0C-8B0A-B91770338F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{681F6615-4571-4A0C-8B0A-B91770338F92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C42D037E-86B6-473A-9A84-8C9296DF0F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C42D037E-86B6-473A-9A84-8C9296DF0F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C42D037E-86B6-473A-9A84-8C9296DF0F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C42D037E-86B6-473A-9A84-8C9296DF0F1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
