@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{681F6615-4571-4A0C-8B0A-B91770338F92}</ProjectGuid>
+    <ProjectGuid>{7D3F1504-2AFD-4E13-B170-636786DE8078}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ForwardList</RootNamespace>
-    <AssemblyName>ForwardList</AssemblyName>
+    <RootNamespace>DoubleLinkedList</RootNamespace>
+    <AssemblyName>DoubleLinkedList</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,9 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleLinkedList.cs" />
+    <Compile Include="DoubleLinkedListEnumerator.cs" />
     <Compile Include="Element.cs" />
-    <Compile Include="ForwardList.cs" />
-    <Compile Include="ForwardListEnumerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

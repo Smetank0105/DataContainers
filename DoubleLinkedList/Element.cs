@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForwardList
+namespace DoubleLinkedList
 {
 	class Element
 	{
 		public int Data { get; set; }
 		internal Element pNext { get; set; }
-		public Element(int Data, Element pNext=null)
+		internal Element pPrev { get; set; }
+		public Element(int Data, Element pNext = null, Element pPrev = null)
 		{
 			this.Data = Data;
 			this.pNext = pNext;
+			this.pPrev = pPrev;
 			Console.WriteLine($"EConsturctor:\t{GetHashCode()}");
 		}
 		~Element()

@@ -3,13 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace ForwardList
 {
-	class ForwardList
+	class ForwardList : IEnumerable
 	{
 		private Element Head { get; set; }
 		public int Lenght { get; private set; }
+		public Element this[int Index]
+		{
+			get
+			{
+				if (Index >= Lenght || Index < 0)
+				{
+					throw new IndexOutOfRangeException("Error: Выход за пределы списка");
+				}
+				if (Index == 0)
+				{
+					return this.Head;
+				}
+				Element Temp = Head;
+				for (int i = 0; i < Index - 1; i++)
+				{
+					if (Temp.pNext == null) break;
+					Temp = Temp.pNext;
+				}
+				return Temp.pNext;
+			}
+			set
+			{
+				if (Index >= Lenght)
+				{
+					throw new IndexOutOfRangeException("Error: Выход за пределы списка");
+				}
+				else if (Index == 0)
+				{
+					this.Head = value;
+				}
+				else
+				{
+					Element Temp = Head;
+					for (int i = 0; i < Index - 1; i++)
+					{
+						if (Temp.pNext == null) break;
+						Temp = Temp.pNext;
+					}
+					Temp.pNext = value;
+				}
+			}
+		}
 		public ForwardList()
 		{
 			Head = null;
@@ -23,6 +66,7 @@ namespace ForwardList
 		public void Clear()
 		{
 			Head = null;
+			Lenght = 0;
 		}
 		//Добавление элементов
 		public void PushFront(int Data)
@@ -48,12 +92,14 @@ namespace ForwardList
 			Temp.pNext = new Element(Data);
 			Lenght++;
 		}
+		public void Add(int Data)
+		{
+			PushBack(Data);
+		}
 		public void Insert(int Data, int Index)
 		{
-			if (Index > Lenght)
+			if (Index > Lenght || Index < 0)
 			{
-				//Console.WriteLine($"Error: Выход за пределы списка");
-				//return;
 				throw new IndexOutOfRangeException("Error: Выход за пределы списка");
 			}
 			if (Index == 0)
@@ -101,5 +147,10 @@ namespace ForwardList
 			Console.WriteLine();
 			Console.WriteLine($"Кол-во элементов списка: {Lenght}");
 		}
+		public override string ToString()
+		{
+			return $"{Head}";
+		}
+		IEnumerator IEnumerable.GetEnumerator() => new ForwardListEnumerator(this);
 	}
 }
