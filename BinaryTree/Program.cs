@@ -16,26 +16,26 @@ namespace BinaryTree
 			Tree tree = new Tree();
 			for(int i = 0; i < n; i++)
 			{
-				tree.Insert(rnd.Next(100),tree.Root);
+				tree.Insert(rnd.Next(100));
 			}
-			tree.Print(tree.Root);
+			tree.Print();
 			Console.WriteLine();
-			Console.WriteLine($"Min value in tree: {tree.MinValue(tree.Root)}");
-			Console.WriteLine($"Max value in tree: {tree.MaxValue(tree.Root)}");
-			Console.WriteLine($"Кол-во элементов дерева: {tree.Count(tree.Root)}");
-			Console.WriteLine($"Сумма элементов дерева: {tree.Sum(tree.Root)}");
+			Console.WriteLine($"Min value in tree: {tree.MinValue()}");
+			Console.WriteLine($"Max value in tree: {tree.MaxValue()}");
+			Console.WriteLine($"Кол-во элементов дерева: {tree.Count()}");
+			Console.WriteLine($"Сумма элементов дерева: {tree.Sum()}");
 
 			UniqueTree u_tree = new UniqueTree();
-			for(int i = 0; i < n; i++)
-			{
-				u_tree.Insert(rnd.Next(100),u_tree.Root);
-			}
-			tree.Print(u_tree.Root);
+            for (int i = 0; i < n; i++)
+            {
+                u_tree.Insert(rnd.Next(100));
+            }
+            u_tree.Print();
 			Console.WriteLine();
-			Console.WriteLine($"Min value in tree: {u_tree.MinValue(u_tree.Root)}");
-			Console.WriteLine($"Max value in tree: {u_tree.MaxValue(u_tree.Root)}");
-			Console.WriteLine($"Кол-во элементов дерева: {u_tree.Count(u_tree.Root)}");
-			Console.WriteLine($"Сумма элементов дерева: {u_tree.Sum(u_tree.Root)}");
+			Console.WriteLine($"Min value in tree: {u_tree.MinValue()}");
+			Console.WriteLine($"Max value in tree: {u_tree.MaxValue()}");
+			Console.WriteLine($"Кол-во элементов дерева: {u_tree.Count()}");
+			Console.WriteLine($"Сумма элементов дерева: {u_tree.Sum()}");
 		}
 	}
 }

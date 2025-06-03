@@ -18,53 +18,37 @@ namespace BinaryTree
 		{
 			Console.WriteLine($"TDestructor:{GetHashCode()}");
 		}
-		public void Insert(int Data, Element Root)
-		{
+		public void Insert(int Data)
+        {
 			if (this.Root == null) this.Root = new Element(Data);
-			if (Root == null) return;
-			if(Data < Root.Data)
-			{
-				if (Root.pLeft == null) Root.pLeft = new Element(Data);
-				else Insert(Data, Root.pLeft);
-			}
-			else
-			{
-				if (Root.pRight == null) Root.pRight = new Element(Data);
-				else Insert(Data, Root.pRight);
-			}
-		}
-		public int MinValue(Element Root)
+			else this.Root.Insert(Data);
+        }
+		public int MinValue()
 		{
-			if (Root == null) return 0;
-			//else if (Root.pLeft == null) return Root.Data;
-			//else return MinValue(Root.pLeft);
-			else return Root.pLeft == null ? Root.Data : MinValue(Root.pLeft);
+			if (this.Root == null) return 0;
+			else return Root.MinValue();
 		}
-		public int MaxValue(Element Root)
+		public int MaxValue()
 		{
-			if (Root == null) return 0;
-			//else if (Root.pRight == null) return Root.Data;
-			//else return MaxValue(Root.pRight);
-			else return Root.pRight == null ? Root.Data : MaxValue(Root.pRight);
+			if (this.Root == null) return 0;
+			else return Root.MaxValue();
 		}
-		public int Count(Element Root)
+		public int Count()
 		{
-			return Root == null ? 0 : Count(Root.pLeft) + Count(Root.pRight) + 1;
+			return this.Root == null ? 0 : this.Root.Count();
 		}
-		public int Sum(Element Root)
+		public int Sum()
 		{
-			return Root == null ? 0 : Sum(Root.pLeft) + Sum(Root.pRight) + Root.Data;
+			return this.Root == null ? 0 : this.Root.Sum();
 		}
 		public void Clear()
 		{
 			this.Root = null;
 		}
-		public void Print(Element Root)
+		public void Print()
 		{
-			if (Root == null) return;
-			Print(Root.pLeft);
-			Console.Write(Root.Data+"\t");
-			Print(Root.pRight);
+			if (this.Root == null) return;
+			this.Root.Print();
 		}
 	}
 }
