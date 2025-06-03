@@ -45,6 +45,22 @@ namespace BinaryTree
 		{
 			this.Root = null;
 		}
+		public int Depth()
+        {
+			if (this.Root == null) return 0;
+			return this.Root.Depth();
+        }
+		public void Erase(int Data)
+        {
+			if (this.Root == null) throw new NullReferenceException("Error: Дерево не содержит элементов");
+			else if (this.Root.Data != Data) this.Root.Erase(Data);
+			else
+			{
+				Element tmp = this.Root.pLeft;
+				this.Root = this.Root.pRight;
+				this.Root.Insert(tmp);
+			}
+        }
 		public void Print()
 		{
 			if (this.Root == null) return;
