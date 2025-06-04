@@ -19,7 +19,8 @@ namespace BinaryTree
 		{
 			//Console.WriteLine($"TDestructor:{GetHashCode()}");
 		}
-		public void Insert(int Data, Element Root)
+		public void Insert(int Data) { Insert(Data, Root); }
+		void Insert(int Data, Element Root)
 		{
 			if (this.Root == null) this.Root = new Element(Data);
 			if (Root == null) return;
@@ -68,7 +69,61 @@ namespace BinaryTree
 		{
 			this.Root = null;
 		}
-		public void Print(Element Root)
+		public int Depth()
+		{
+			return Depth(Root);
+		}
+		int Depth(Element Root)
+		{
+			if (Root == null) return 0;
+			int lDepth = Depth(Root.pLeft);
+			int rDepth = Depth(Root.pRight);
+			return (lDepth > rDepth ? lDepth : rDepth) + 1;
+		}
+		public void DepthPrint(int Depth) 
+		{ 
+			DepthPrint(Root, Depth);
+			Console.WriteLine();
+			Console.WriteLine();
+			Console.WriteLine(); 
+		}
+		void DepthPrint(Element Root, int Depth)
+		{
+			if (Root == null) return;
+			int interval = 4 * (this.Depth() - Depth);
+			if (Depth <= 0)
+			{
+				//Console.Write(Root.Data.ToString().PadLeft(interval));
+				//PrintInterval(this.Depth(this.Root) - Depth);
+				Console.Write(Root.Data);
+				PrintInterval(this.Depth(this.Root) - Depth);
+			}
+			else
+			{
+				DepthPrint(Root.pLeft, Depth - 1);
+				DepthPrint(Root.pRight, Depth - 1);
+			}
+		}
+		public void TreePrint(int Depth = 0)
+		{
+			if (Root == null) return;
+			if (this.Depth(this.Root) - Depth == 0) return;
+			//int interval = 4 * (this.Depth()-Depth);
+			//Console.Write("".PadLeft(interval));
+			PrintInterval(this.Depth(this.Root) - Depth);
+			PrintInterval(this.Depth(this.Root) - Depth);
+			DepthPrint(Depth);
+			TreePrint(Depth + 1);
+		}
+		void PrintInterval(int Count)
+		{
+			for(int i = 0; i < Count; i++)
+			{
+				Console.Write("    ");
+			}
+		}
+		public void Print() { Print(Root); Console.WriteLine(); }
+		void Print(Element Root)
 		{
 			if (Root == null) return;
 			Print(Root.pLeft);

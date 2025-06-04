@@ -45,6 +45,19 @@ namespace BinaryTree
 			Console.WriteLine($"Сумма элементов дерева: {u_tree.Sum()}"); 
 #endif
 			//Tree tree = new Tree() { 50, 25, 75, 16, 32, 70, 80 };
+			Tree tree = new Tree();
+			tree.Insert(50);
+			tree.Insert(25);
+			tree.Insert(75);
+			tree.Insert(16);
+			tree.Insert(32);
+			tree.Insert(70);
+			tree.Insert(80);
+			tree.Print();
+			Console.WriteLine("\n-----------------------------------------------\n");
+			//tree.DepthPrint(2);
+			tree.TreePrint();
+			Console.WriteLine();
 		}
 	}
 }
