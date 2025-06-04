@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,17 @@ namespace BinaryTree
 		public Tree()
 		{
 			Root = null;
-			Console.WriteLine($"TConstructor:{GetHashCode()}");
+			//Console.WriteLine($"TConstructor:{GetHashCode()}");
 		}
 		~Tree()
 		{
-			Console.WriteLine($"TDestructor:{GetHashCode()}");
+			//Console.WriteLine($"TDestructor:{GetHashCode()}");
 		}
 		public void Insert(int Data, Element Root)
 		{
 			if (this.Root == null) this.Root = new Element(Data);
 			if (Root == null) return;
-			if(Data < Root.Data)
+			if (Data < Root.Data)
 			{
 				if (Root.pLeft == null) Root.pLeft = new Element(Data);
 				else Insert(Data, Root.pLeft);
@@ -33,27 +34,35 @@ namespace BinaryTree
 				else Insert(Data, Root.pRight);
 			}
 		}
-		public int MinValue(Element Root)
+		public int MinValue() { return MinValue(Root); }
+		int MinValue(Element Root)
 		{
 			if (Root == null) return 0;
 			//else if (Root.pLeft == null) return Root.Data;
 			//else return MinValue(Root.pLeft);
 			else return Root.pLeft == null ? Root.Data : MinValue(Root.pLeft);
 		}
-		public int MaxValue(Element Root)
+		public int MaxValue() { return MaxValue(Root); }
+		int MaxValue(Element Root)
 		{
 			if (Root == null) return 0;
 			//else if (Root.pRight == null) return Root.Data;
 			//else return MaxValue(Root.pRight);
 			else return Root.pRight == null ? Root.Data : MaxValue(Root.pRight);
 		}
-		public int Count(Element Root)
+		public int Count() { return Count(Root); }
+		int Count(Element Root)
 		{
 			return Root == null ? 0 : Count(Root.pLeft) + Count(Root.pRight) + 1;
 		}
-		public int Sum(Element Root)
+		public int Sum() { return Sum(Root); }
+		int Sum(Element Root)
 		{
 			return Root == null ? 0 : Sum(Root.pLeft) + Sum(Root.pRight) + Root.Data;
+		}
+		public double Avg()
+		{
+			return (double)Sum(Root) / Count(Root);
 		}
 		public void Clear()
 		{
@@ -63,7 +72,7 @@ namespace BinaryTree
 		{
 			if (Root == null) return;
 			Print(Root.pLeft);
-			Console.Write(Root.Data+"\t");
+			Console.Write(Root.Data + "\t");
 			Print(Root.pRight);
 		}
 	}
