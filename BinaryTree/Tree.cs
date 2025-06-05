@@ -29,12 +29,12 @@ namespace BinaryTree
 			if (NewRoot.Data < Root.Data)
 			{
 				if (Root.pLeft == null) Root.pLeft = NewRoot;
-				else Insert(NewRoot.Data, Root.pLeft);
+				else Insert(NewRoot, Root.pLeft);
 			}
 			else
 			{
 				if (Root.pRight == null) Root.pRight = NewRoot;
-				else Insert(NewRoot.Data, Root.pRight);
+				else Insert(NewRoot, Root.pRight);
 			}
 		}
 		void Insert(int Data, Element Root)
@@ -83,15 +83,15 @@ namespace BinaryTree
         {
 			if (this.Root == null) return;
 			else if (Root == null) return;
-			else if (Root.Data == Data)
+			else if (this.Root.Data == Data)
             {
-				Element tmp = this.Root;
-				if (Root.pRight != null)
+				Element tmp = this.Root.pLeft;
+				if (this.Root.pRight != null)
 				{
-					Root = Root.pRight;
-					Insert(Root.pLeft, Root);
+					this.Root = this.Root.pRight;
+					Insert(tmp, this.Root);
 				}
-				else Root = Root.pLeft;
+				else this.Root = this.Root.pLeft;
             }
 			else if (Data < Root.Data)
 			{
@@ -152,14 +152,18 @@ namespace BinaryTree
 		}
 		void DepthPrint(Element Root, int Depth)
 		{
-			if (Root == null) return;
-			int interval = 4 * (this.Depth() - Depth);
+			if (Root == null)
+            {
+				PrintInterval(1);
+				Console.Write("Null");
+				PrintInterval(1);
+				return;
+            }
 			if (Depth <= 0)
 			{
-				//Console.Write(Root.Data.ToString().PadLeft(interval));
-				//PrintInterval(this.Depth(this.Root) - Depth);
+				PrintInterval((int)Math.Pow(2,this.Depth(Root))-1);
 				Console.Write(Root.Data);
-				PrintInterval(this.Depth(this.Root) - Depth);
+				PrintInterval((int)Math.Pow(2, this.Depth(Root)) - 1);
 			}
 			else
 			{
@@ -169,20 +173,18 @@ namespace BinaryTree
 		}
 		public void TreePrint(int Depth = 0)
 		{
-			if (Root == null) return;
-			if (this.Depth(this.Root) - Depth == 0) return;
-			//int interval = 4 * (this.Depth()-Depth);
-			//Console.Write("".PadLeft(interval));
-			PrintInterval(this.Depth(this.Root) - Depth);
-			PrintInterval(this.Depth(this.Root) - Depth);
-			DepthPrint(Depth);
-			TreePrint(Depth + 1);
-		}
+            if (Root == null) return;
+            if (this.Depth(this.Root) - Depth <= 0) return;
+            //PrintInterval(this.Depth(this.Root) - Depth);
+            //PrintInterval(this.Depth(this.Root) - Depth);
+            DepthPrint(Depth);
+            TreePrint(Depth + 1);
+        }
 		void PrintInterval(int Count)
 		{
 			for(int i = 0; i < Count; i++)
 			{
-				Console.Write("    ");
+				Console.Write(" ");
 			}
 		}
 		public void Print() { Print(Root); Console.WriteLine(); }
