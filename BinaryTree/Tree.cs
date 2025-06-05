@@ -20,6 +20,23 @@ namespace BinaryTree
 			//Console.WriteLine($"TDestructor:{GetHashCode()}");
 		}
 		public void Insert(int Data) { Insert(Data, Root); }
+		public void Insert(Element NewRoot) { Insert(NewRoot, Root); }
+		void Insert(Element NewRoot, Element Root)
+        {
+			if (NewRoot == null) return;
+			if (this.Root == null) this.Root = NewRoot;
+			if (Root == null) return;
+			if (NewRoot.Data < Root.Data)
+			{
+				if (Root.pLeft == null) Root.pLeft = NewRoot;
+				else Insert(NewRoot.Data, Root.pLeft);
+			}
+			else
+			{
+				if (Root.pRight == null) Root.pRight = NewRoot;
+				else Insert(NewRoot.Data, Root.pRight);
+			}
+		}
 		void Insert(int Data, Element Root)
 		{
 			if (this.Root == null) this.Root = new Element(Data);
@@ -60,6 +77,52 @@ namespace BinaryTree
 		int Sum(Element Root)
 		{
 			return Root == null ? 0 : Sum(Root.pLeft) + Sum(Root.pRight) + Root.Data;
+		}
+		public void Erase(int Data) { Erase(Data, Root); }
+		void Erase(int Data, Element Root)
+        {
+			if (this.Root == null) return;
+			else if (Root == null) return;
+			else if (Root.Data == Data)
+            {
+				Element tmp = this.Root;
+				if (Root.pRight != null)
+				{
+					Root = Root.pRight;
+					Insert(Root.pLeft, Root);
+				}
+				else Root = Root.pLeft;
+            }
+			else if (Data < Root.Data)
+			{
+				if (Root.pLeft == null) throw new KeyNotFoundException("Error: Значение не найдено");
+				else if (Root.pLeft.Data != Data) Erase(Data, Root.pLeft);
+				else 
+				{
+					Element tmp = Root.pLeft;
+					if (Root.pLeft.pRight != null)
+					{
+						Root.pLeft = Root.pLeft.pRight;
+						Insert(tmp.pLeft,Root.pLeft);
+					}
+					else Root.pLeft = Root.pLeft.pLeft;
+				}
+			}
+			else
+			{
+				if (Root.pRight == null) throw new KeyNotFoundException("Error: Значение не найдено");
+				else if (Root.pRight.Data != Data) Erase(Data, Root.pRight);
+                else
+                {
+					Element tmp = Root.pRight;
+					if (Root.pRight.pLeft != null)
+					{
+						Root.pRight = Root.pRight.pLeft;
+						Insert(tmp.pRight, Root.pRight);
+					}
+					else Root.pRight = Root.pRight.pRight;
+				}
+			}
 		}
 		public double Avg()
 		{

@@ -53,9 +53,10 @@ namespace BinaryTree
 			tree.Insert(32);
 			tree.Insert(70);
 			tree.Insert(80);
+			//tree.Erase(25);
 			tree.Print();
 			Console.WriteLine("\n-----------------------------------------------\n");
-			//tree.DepthPrint(2);
+			//tree.DepthPrint(0);
 			tree.TreePrint();
 			Console.WriteLine();
 		}
