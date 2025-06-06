@@ -56,16 +56,12 @@ namespace BinaryTree
 		int MinValue(Element Root)
 		{
 			if (Root == null) return 0;
-			//else if (Root.pLeft == null) return Root.Data;
-			//else return MinValue(Root.pLeft);
 			else return Root.pLeft == null ? Root.Data : MinValue(Root.pLeft);
 		}
 		public int MaxValue() { return MaxValue(Root); }
 		int MaxValue(Element Root)
 		{
 			if (Root == null) return 0;
-			//else if (Root.pRight == null) return Root.Data;
-			//else return MaxValue(Root.pRight);
 			else return Root.pRight == null ? Root.Data : MaxValue(Root.pRight);
 		}
 		public int Count() { return Count(Root); }
@@ -155,7 +151,7 @@ namespace BinaryTree
 			if (Root == null)
             {
 				PrintInterval(1);
-				Console.Write("Null");
+				Console.Write("  ");
 				PrintInterval(1);
 				return;
             }
@@ -175,17 +171,42 @@ namespace BinaryTree
 		{
             if (Root == null) return;
             if (this.Depth(this.Root) - Depth <= 0) return;
-            //PrintInterval(this.Depth(this.Root) - Depth);
-            //PrintInterval(this.Depth(this.Root) - Depth);
-            DepthPrint(Depth);
-            TreePrint(Depth + 1);
-        }
+            //DepthPrint(Depth);
+            //TreePrint(Depth + 1);
+			for (int i = 0; i < this.Depth(); i++)
+			{
+				DepthPrint(i);
+			}
+		}
 		void PrintInterval(int Count)
 		{
 			for(int i = 0; i < Count; i++)
 			{
 				Console.Write(" ");
 			}
+		}
+		public void Balance()
+        {
+			List<int> list = new List<int>();
+			FillList(this.Root, list);
+			Clear();
+			BalanceList(Root, list);
+
+        }
+		void FillList(Element Root,List<int> list)
+        {
+			if (Root == null) return;
+			FillList(Root.pLeft, list);
+			list.Add(Root.Data);
+			FillList(Root.pRight, list);
+		}
+		void BalanceList(Element Root, List<int> list)
+		{
+			if (list.Count == 0) return;
+			int Count = list.Count() / 2;
+			Insert(list[list.Count() / 2]);
+			BalanceList(Root, list.Take(Count).ToList());
+			BalanceList(Root, list.Skip(Count + 1).ToList());
 		}
 		public void Print() { Print(Root); Console.WriteLine(); }
 		void Print(Element Root)
