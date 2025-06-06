@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BinaryTree
 {
-	class Program
-	{
-		static void Main(string[] args)
-		{
+    class Program
+    {
+        static void Main(string[] args)
+        {
 #if TREE_1
 			Console.WriteLine("Введите размер дерева: ");
 			int n = Convert.ToInt32(Console.ReadLine());
@@ -59,12 +59,12 @@ namespace BinaryTree
             tree.Insert(80);
             tree.Erase(50);
             tree.Print();
-			Console.WriteLine("\n-----------------------------------------------\n");
-			tree.TreePrint();
-			Console.WriteLine();
-			Console.WriteLine("\n-----------------------------------------------\n");
-			tree.Balance();
-			tree.TreePrint();
+            Console.WriteLine("\n-----------------------------------------------\n");
+            tree.TreePrint();
+            Console.WriteLine();
+            Console.WriteLine("\n-----------------------------------------------\n");
+            tree.Balance();
+            tree.TreePrint();
         }
-	}
+    }
 }
